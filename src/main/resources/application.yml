@@ -1,0 +1,18 @@
+server:
+  port: 9038
+  servlet:
+    context-path: /swagger
+
+# Open API 설정(Swagger)
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: api.do
+    layout: BaseLayout
+    tags-sorter: alpha
+  version: v1
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  model-and-view-allowed: true
