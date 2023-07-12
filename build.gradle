@@ -12,8 +12,8 @@ java {
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 	}
 }
 
@@ -22,9 +22,15 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	// lombok
 	annotationProcessor 'org.projectlombok:lombok'
@@ -34,10 +40,20 @@ dependencies {
 	//implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 
-	//testImplementation 'org.springframework.security:spring-security-test'
+	// jwt
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
+	// H2 DB
+	runtimeOnly 'com.h2database:h2'
+
+	// jsp파일 사용하기
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
+
 	//implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	//implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-	//implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
